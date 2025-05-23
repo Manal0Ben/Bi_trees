@@ -5,17 +5,36 @@
 
 //this library was made in the last TP session
 
-typedef struct tree {
-    int value;                 
-    struct tree* left;  
-    struct tree* right; 
-} Node, *tree;
+typedef struct TreeNode {
+    int value;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
 
-tree createNode(int val); 
-tree insert(tree root, int new);
-int searchTree(tree root, int value);
-void prefixe(tree root);
-void infixe(tree root);
-void postfix(tree root);
+TreeNode* insert(TreeNode* root, int new);
+int searchTree(TreeNode* root, int value);
+void prefixe(TreeNode* root);
+void infixe(TreeNode* root);
+void postfix(TreeNode* root);
+
+//tree* createNode(int value);
+TreeNode* createNode(int value);
+
+void deleteNode(TreeNode* node);
+
+int getValue(TreeNode* node);
+
+void setValue(TreeNode* node, int value);
+
+TreeNode* getLeft(TreeNode* node);
+
+void setLeft(TreeNode* node, TreeNode* leftNode);
+
+TreeNode* getRight(TreeNode* node);
+
+void setRight(TreeNode* node, TreeNode* rightNode);
+
+int isTreeEmpty(TreeNode* root);
+
 
 #endif // TREE_H

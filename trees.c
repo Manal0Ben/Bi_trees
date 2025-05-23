@@ -5,19 +5,20 @@
 // Definition of Node structure and tree type
 
 // Function to create a new node
-tree createNode(int val) {
-    tree a = (tree)malloc(sizeof(Node));
-    if (a == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        return NULL;  
+TreeNode* createNode(int value) {
+    TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    if (newNode == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
     }
-    a->value = val;
-    a->left = NULL;
-    a->right = NULL;
-    return a; 
+    newNode->value = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
 }
 
-tree insert(tree root, int new) {
+
+TreeNode* insert(TreeNode* root, int new) {
     if (root == NULL) {
         return createNode(new); 
     }
@@ -29,7 +30,7 @@ tree insert(tree root, int new) {
     return root; 
 }
 
-int searchTree(tree root, int value) {
+int searchTree(TreeNode* root, int value) {
     if (root == NULL) {
         return 0;
     }
@@ -45,25 +46,73 @@ int searchTree(tree root, int value) {
 
 
 // Pre-order
-void prefixe(tree root) {
+void prefixe(TreeNode* root) {
     if (root== NULL) return;
-    printf("%d \n ", root->value);
+    printf("Node value: %d\n", root->value);
     prefixe(root->left);
     prefixe(root->right);
 }
 
 // In-order 
-void infixe(tree root) {
+void infixe(TreeNode* root) {
     if (root == NULL) return;
     infixe(root->left);
-    printf("%d \n ", root->value);
+    printf("Node value: %d\n", root->value);
     infixe(root->right);
 }
 
 // Post-order
-void postfix(tree root) {
+void postfix(TreeNode* root) {
     if (root == NULL) return;
     postfix(root->left);
     postfix(root->right);
-    printf("%d \n", root->value);
+    printf("Node value: %d\n", root->value);
+}
+
+
+void deleteNode(TreeNode* node) {
+    if (node != NULL) {
+        free(node);
+    }
+}
+
+// Function to get the value stored in a node
+int getValue(TreeNode* node) {
+    return node ? node->value : -1;
+}
+
+// Function to set the value of a node
+void setValue(TreeNode* node, int value) {
+    if (node != NULL) {
+        node->value = value;
+    }
+}
+
+// Function to get the left child of a node
+TreeNode* getLeft(TreeNode* node) {
+    return node ? node->left : NULL;
+}
+
+// Function to set the left child for a given node
+void setLeft(TreeNode* node, TreeNode* leftNode) {
+    if (node != NULL) {
+        node->left = leftNode;
+    }
+}
+
+// Function to get the right child of a node
+TreeNode* getRight(TreeNode* node) {
+    return node ? node->right : NULL;
+}
+
+// Function to set the right child for a given node
+void setRight(TreeNode* node, TreeNode* rightNode) {
+    if (node != NULL) {
+        node->right = rightNode;
+    }
+}
+
+// Function to check if a tree is empty (i.e., root is NULL)
+int isTreeEmpty(TreeNode* root) {
+    return root == NULL;
 }
